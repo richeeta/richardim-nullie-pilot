@@ -31,6 +31,9 @@
     }
   </script>
   <style>
+    body {
+      font-family: 'So:hne Mono', monospace;
+    }
     .cursor {
       display: inline-block;
       width: 0.6em;
@@ -46,14 +49,14 @@
     }
   </style>
 </head>
-<body class="bg-background text-foreground font-mono selection:bg-primary/30 selection:text-white">
+<body class="bg-background text-foreground selection:bg-primary/30 selection:text-white">
   <header class="sticky top-0 z-10 bg-background/80 backdrop-blur-sm">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
         <div class="flex items-center gap-4">
-          <img src="https://richardim.com/assets/images/logo.png" alt="Richard and Peanut" class="h-10 w-10 border-2 border-primary rounded" />
+          <div class="h-12 w-12 border-2 border-primary rounded bg-cover bg-center" style="background-image: url('https://richardim.com/assets/images/logo.png');"></div>
           <div>
-            <h1 class="text-lg font-bold text-white leading-tight" style="font-family: 'So\:hne'">Richard Hyunho Im (@richeeta)</h1>
+            <h1 class="text-lg font-bold text-white leading-tight" style="font-family: 'So:hne'">Richard Hyunho Im (@richeeta)</h1>
             <p class="text-sm text-primary">Security Researcher</p>
           </div>
         </div>
@@ -94,11 +97,11 @@
       </div>
     </div>
   </header>
-  <main class="container mx-auto flex-grow px-4 sm:px-6 lg:px-8 py-8">
+  <main class="container mx-auto flex-grow px-4 sm:px-6 lg:px-8 py-8 font-mono">
     <div class="space-y-6">
       <div>
-  <p class="text-muted">guest@richeeta:~$ <span class="text-primary">finger richeeta</span></p>
-  <pre class="whitespace-pre-wrap text-foreground">
+        <p class="text-muted">guest@richeeta:~$ <span class="text-primary">finger richeeta</span></p>
+        <pre class="whitespace-pre-wrap text-foreground">
 Login: richeeta			Name: <span class="text-secondary">Richard Hyunho Im</span>
 Directory: /home/richeeta		Shell: <span class="text-accent">/bin/zsh</span>
 Last login Tue Jul 23 14:22 on pts/0
@@ -115,8 +118,8 @@ Description:
 
 Plan:
 Find vulns, drink Diet Coke, and pet my puppy. Not necessarily in that order.</pre>
-  <p class="text-muted">guest@richeeta:~$ <span class="text-primary">ls -aR</span></p>
-<pre class="whitespace-pre-wrap text-foreground">
+        <p class="text-muted">guest@richeeta:~$ <span class="text-primary">ls -aR</span></p>
+        <pre class="whitespace-pre-wrap text-foreground">
 <span class="text-primary">/about:</span>
 .   ..   <a href="/about/certs" class="text-secondary hover:text-accent">certs</a>   <a href="/about/credits" class="text-secondary hover:text-accent">credits</a>   <a href="/about/languages" class="text-secondary hover:text-accent">langs</a>   <a href="/about/projects" class="text-secondary hover:text-accent">projects</a>   <a href="/about/tools" class="text-secondary hover:text-accent">tools</a>   <a href="/about/equipment" class="text-secondary hover:text-accent">equipment</a>
 
@@ -128,7 +131,7 @@ Find vulns, drink Diet Coke, and pet my puppy. Not necessarily in that order.</p
 .   ..
 <span class="text-primary">/contact:</span>
 .   ..
-</pre>
+        </pre>
       </div>
     </div>
   </main>
