@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <link rel="preload" href="https://richardim.com/assets/fonts/dehinted-Sohne-Buch.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://richardim.com/assets/fonts/dehinted-Sohne-Kraftig.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://richardim.com/assets/fonts/dehinted-Sohne-Fett.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://richardim.com/assets/fonts/dehinted-SohneMono-Buch.woff2" as="font" type="font/woff2" crossorigin>
+<meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<title>Richard Hyunho Im (@richeeta) - Security Researcher</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      @layer base {
+        :root {
+          --background: #0d0d0d;
+          --foreground: #e0e0e0;
+          --primary: #06f980;
+          --secondary: #00e5ff;
+          --accent: #c866ff;
+          --muted: #6c757d;
+        }
+        /* Söhne Regular (Buch) */
+        @font-face {
+          font-family: 'So:hne';
+          src: url('https://richardim.com/assets/fonts/dehinted-Sohne-Buch.woff2') format('woff2');
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+
+        /* Söhne SemiBold (Kraftig) */
+        @font-face {
+          font-family: 'So:hne Kra:ftig';
+          src: url('https://richardim.com/assets/fonts/dehinted-Sohne-Kraftig.woff2') format('woff2');
+          font-weight: 600;
+          font-style: normal;
+          font-display: swap;
+        }
+
+        /* Söhne Bold (Fett) */
+        @font-face {
+          font-family: 'So:hne Fett';
+          src: url('https://richardim.com/assets/fonts/dehinted-Sohne-Fett.woff2') format('woff2');
+          font-weight: 700;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: 'So:hne Mono';
+          src: url('https://richardim.com/assets/fonts/dehinted-SohneMono-Buch.woff2') format('woff2');
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+        body {
+          @apply bg-[var(--background)] text-[var(--foreground)] font-mono;
+        }
+        .prompt {
+          @apply text-[var(--muted)];
+        }
+        .command {
+          @apply text-[var(--primary)];
+        }
+        .output {
+          @apply text-[var(--foreground)];
+        }
+        .directory {
+          @apply text-[var(--secondary)];
+        }
+        .flag {
+          @apply text-[var(--muted)] transition-colors duration-300;
+        }
+        .flag:hover {
+          @apply text-[var(--accent)];
+        }
+        .cursor {
+          display: inline-block;
+          width: 0.6em;
+          height: 1em;
+          background-color: var(--primary);
+          animation: blink 1s steps(1) infinite;
+          vertical-align: text-bottom;
+        }
+        @keyframes blink {
+          50% {
+            opacity: 0;
+          }
+        }
+      }
+    </style>
+</head>
+<body class="selection:bg-primary/30 selection:text-white">
+<div class="flex min-h-screen flex-col font-mono text-base" style="font-family: 'So:hne Mono'">
+<header class="sticky top-0 z-10 bg-background/80 backdrop-blur-sm">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex h-16 items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover h-10 w-10 border-2 border-primary" style='background-image: url("https://richardim.com/assets/images/logo.png");'></div>
+<div>
+<h1 class="text-lg font-bold text-white" style="font-family: 'So:hne'">
+                  Richard Hyunho Im (@richeeta)
+                </h1>
+<p class="text-sm text-primary">Security Researcher</p>
+</div>
+</div>
+<nav class="hidden md:flex items-center space-x-6">
+<a class="flag" href="#">--home</a>
+<a class="flag" href="#">--blog</a>
+<a class="flag" href="#">--training</a>
+<a class="flag" href="#">--consulting</a>
+<a class="flag" href="#">--contact</a>
+</nav>
+</div>
+</div>
+</header>
+<main class="container mx-auto flex-grow px-4 sm:px-6 lg:px-8 py-8">
+<div class="space-y-6">
+<div>
+<p class="prompt">guest@richeeta:~$<span class="command ml-2">finger richeeta</span></p>
+<pre class="output whitespace-pre-wrap">Login: richeeta			Name: Richard Hyunho Im
+Directory: /home/richeeta		Shell: /bin/zsh
+Last login Tue Jul 23 14:22 on pts/0
+No Mail.
+Plan:
+Find vulns, drink Diet Coke, and pet my puppy. Not necessarily in that order.</pre>
+</div>
+<div>
+<p class="prompt">guest@richeeta:~$<span class="command ml-2">ls -F</span></p>
+<p class="output">
+<span class="directory">talks/</span>
+<span class="directory">credits/</span>
+<span class="directory">projects/</span>
+<span class="directory">certs/</span>
+<span class="directory">langs/</span>
+<span class="directory">tools/</span>
+<span class="directory">equipment/</span>
+              peanut.txt
+            </p>
+</div>
+<div>
+<p class="prompt">guest@richeeta:~$<span class="command ml-2">cat peanut.txt</span></p>
+<p class="output">
+              Peanut is the real brains behind the operation. He's a fluffy feline mastermind who specializes in cryptographic biscuit-making and tactical naps on warm keyboards. His primary role is to provide moral support and demand treats at critical moments, ensuring peak performance from his human counterpart.
+            </p>
+</div>
+<div>
+<p class="prompt">guest@richeeta:~$<span class="cursor"></span></p>
+</div>
+</div>
+</main>
+<footer class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 md:hidden">
+<nav class="flex flex-wrap justify-center gap-x-4 gap-y-2">
+<a class="flag" href="#">--home</a>
+<a class="flag" href="#">--blog</a>
+<a class="flag" href="#">--training</a>
+<a class="flag" href="#">--consulting</a>
+<a class="flag" href="#">--contact</a>
+</nav>
+</footer>
+</div>
+
+</body></html>
