@@ -1,134 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Richard Hyunho Im (@richeeta) - Security Researcher</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Richard Hyunho Im (@richeeta) - Security Researcher</title>
+<link rel="preconnect" href="https://richardim.com" crossorigin>
 
-  <!-- optional: helps font loads -->
-  <link rel="preconnect" href="https://richardim.com" crossorigin>
+<!-- Söhne faces -->
+<style>
+@font-face{font-family:'So:hne';src:url('https://richardim.com/assets/fonts/dehinted-Sohne-Buch.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'So:hne Kra:ftig';src:url('https://richardim.com/assets/fonts/dehinted-Sohne-Kraftig.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap;}
+@font-face{font-family:'So:hne Fett';src:url('https://richardim.com/assets/fonts/dehinted-Sohne-Fett.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;}
+@font-face{font-family:'So:hne Mono';src:url('https://richardim.com/assets/fonts/dehinted-SohneMono-Buch.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+</style>
 
-  <!-- 1) Tailwind config MUST run before the CDN script AND be exempt from Rocket Loader -->
-  <script data-cfasync="false">
-    window.tailwind = window.tailwind || {};
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            background: '#0d0d0d',
-            foreground: '#e0e0e0',
-            primary: '#06f980',
-            secondary: '#00e5ff',
-            accent: '#c866ff',
-            muted: '#6c757d'
-          },
-          fontFamily: {
-            mono: ["'So:hne Mono'", 'monospace'],
-            sans: ["'So:hne'", 'sans-serif']
-          }
-        }
-      }
-    };
-  </script>
+<!-- Pure CSS variables & layout -->
+<style>
+:root{
+  --bg:#0d0d0d; --fg:#e0e0e0; --muted:#6c757d;
+  --pri:#06f980; --sec:#00e5ff; --acc:#c866ff;
+  --border:rgba(108,117,125,.2);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'So:hne Mono',monospace}
+a{color:inherit;text-decoration:none}
+.flag{color:var(--muted);transition:color .2s}
+.flag:hover{color:var(--acc)}
+.container{max-width:1100px;margin:0 auto;padding:0 16px}
 
-  <!-- 2) Load the Tailwind CDN script itself, also exempted from Rocket Loader -->
-  <script data-cfasync="false" src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+header{position:sticky;top:0;z-index:10;background:rgba(13,13,13,.8);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--border)}
+.navbar{height:64px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:40px;height:40px;border:2px solid var(--pri);border-radius:6px;background-size:cover;background-position:center}
+.title{line-height:1.05}
+.title h1{margin:0;font:700 18px 'So:hne',sans-serif;color:#fff}
+.subtitle{margin:0;color:var(--pri);font-size:13px}
 
-  <!-- 3) Fonts -->
-  <style>
-    @font-face{
-      font-family:'So:hne';
-      src:url('https://richardim.com/assets/fonts/dehinted-Sohne-Buch.woff2') format('woff2');
-      font-weight:400;font-style:normal;font-display:swap;
-    }
-    @font-face{
-      font-family:'So:hne Kra:ftig';
-      src:url('https://richardim.com/assets/fonts/dehinted-Sohne-Kraftig.woff2') format('woff2');
-      font-weight:600;font-style:normal;font-display:swap;
-    }
-    @font-face{
-      font-family:'So:hne Fett';
-      src:url('https://richardim.com/assets/fonts/dehinted-Sohne-Fett.woff2') format('woff2');
-      font-weight:700;font-style:normal;font-display:swap;
-    }
-    @font-face{
-      font-family:'So:hne Mono';
-      src:url('https://richardim.com/assets/fonts/dehinted-SohneMono-Buch.woff2') format('woff2');
-      font-weight:400;font-style:normal;font-display:swap;
-    }
+.desktop-nav{display:none;gap:24px;align-items:center}
+@media (min-width:768px){.desktop-nav{display:flex}}
+.dd{position:relative}
+.dd > a{cursor:pointer}
+.dd-menu{position:absolute;top:100%;left:0;margin-top:6px;display:none;background:var(--bg);border:1px solid var(--muted);border-radius:8px;padding:8px 10px;min-width:160px;box-shadow:0 10px 24px rgba(0,0,0,.45);font-size:14px}
+.dd:hover .dd-menu{display:block}
+.dd-menu a{display:block;padding:6px 4px}
+.hamb{display:inline-block;background:none;border:0;color:var(--pri);font-size:22px;cursor:pointer}
+@media (min-width:768px){.hamb{display:none}}
 
-    /* Minimal fallback if Tailwind still gets blocked */
-    :root{
-      --background:#0d0d0d; --foreground:#e0e0e0; --primary:#06f980; --secondary:#00e5ff; --accent:#c866ff; --muted:#6c757d;
-    }
-    body{background:var(--background);color:var(--foreground);font-family:'So:hne Mono',monospace;}
-    .flag{color:var(--muted)} .flag:hover{color:var(--accent)}
-  </style>
+.mobile{display:none;padding:10px 16px}
+.mobile.open{display:block}
+.mobile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.mobile-grid a{font-size:14px}
+
+main{padding:24px 0 12px}
+.prompt{color:var(--muted)}
+.cmd{color:var(--pri)}
+.primary{color:var(--pri)}
+.secondary{color:var(--sec)}
+.accent{color:var(--acc)}
+
+.block{white-space:pre-wrap;margin:10px 0 22px}
+.footer{border-top:1px solid var(--border);padding:18px 0 28px;text-align:center;color:var(--muted);font-size:13px}
+.footer a{margin:0 12px}
+hr.sep{border:0;border-top:1px solid var(--border);margin:10px 0 0}
+</style>
 </head>
 
-<body class="bg-background text-foreground selection:bg-primary/30 selection:text-white">
-  <!-- HEADER -->
-  <header class="sticky top-0 z-10 bg-background/80 backdrop-blur-sm border-b border-muted/20">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex h-16 items-center justify-between">
-        <div class="flex items-center gap-4">
-          <div class="h-10 w-10 border-2 border-primary rounded bg-cover bg-center"
-               style="background-image:url('https://richardim.com/assets/images/logo.png')"></div>
-          <div>
-            <h1 class="text-lg font-bold text-white leading-tight" style="font-family:'So:hne'">
-              Richard Hyunho Im (@richeeta)
-            </h1>
-            <p class="text-sm text-primary">Security Researcher</p>
-          </div>
-        </div>
-
-        <button class="md:hidden text-primary" aria-label="Open menu"
-                onclick="document.getElementById('mobile-nav').classList.toggle('hidden')">☰</button>
-
-        <nav class="hidden md:flex items-center gap-6">
-          <div class="relative group">
-            <a class="flag cursor-pointer">about</a>
-            <div class="absolute top-full mt-1 hidden group-hover:block bg-background border border-muted p-2 text-sm rounded shadow-xl">
-              <a class="block hover:text-accent" href="/about/certs">certs</a>
-              <a class="block hover:text-accent" href="/about/credits">credits</a>
-              <a class="block hover:text-accent" href="/about/languages">languages</a>
-              <a class="block hover:text-accent" href="/about/projects">projects</a>
-              <a class="block hover:text-accent" href="/about/tools">tools</a>
-              <a class="block hover:text-accent" href="/about/equipment">equipment</a>
-            </div>
-          </div>
-          <a class="flag" href="/blog">blog</a>
-          <a class="flag" href="/training">training</a>
-          <a class="flag" href="/consulting">consulting</a>
-          <a class="flag" href="/contact">contact</a>
-        </nav>
+<body>
+<header>
+  <div class="container navbar">
+    <div class="brand">
+      <div class="logo" style="background-image:url('https://richardim.com/assets/images/logo.png')"></div>
+      <div class="title">
+        <h1>Richard Hyunho Im (@richeeta)</h1>
+        <p class="subtitle">Security Researcher</p>
       </div>
     </div>
 
-    <div id="mobile-nav" class="md:hidden hidden px-4 pb-3">
-      <div class="grid grid-cols-2 gap-2 text-sm">
+    <button class="hamb" aria-label="Open menu" onclick="document.getElementById('mnav').classList.toggle('open')">☰</button>
+
+    <nav class="desktop-nav">
+      <div class="dd">
+        <a class="flag">about</a>
+        <div class="dd-menu">
+          <a class="flag" href="/about/certs">certs</a>
+          <a class="flag" href="/about/credits">credits</a>
+          <a class="flag" href="/about/languages">languages</a>
+          <a class="flag" href="/about/projects">projects</a>
+          <a class="flag" href="/about/tools">tools</a>
+          <a class="flag" href="/about/equipment">equipment</a>
+        </div>
+      </div>
+      <a class="flag" href="/blog">blog</a>
+      <a class="flag" href="/training">training</a>
+      <a class="flag" href="/consulting">consulting</a>
+      <a class="flag" href="/contact">contact</a>
+    </nav>
+  </div>
+
+  <div id="mnav" class="mobile">
+    <div class="container">
+      <div class="mobile-grid">
         <a class="flag" href="/about/certs">certs</a>
         <a class="flag" href="/about/credits">credits</a>
         <a class="flag" href="/about/languages">languages</a>
         <a class="flag" href="/about/projects">projects</a>
         <a class="flag" href="/about/tools">tools</a>
         <a class="flag" href="/about/equipment">equipment</a>
-        <a class="flag col-span-2" href="/blog">blog</a>
+        <a class="flag" href="/blog">blog</a>
         <a class="flag" href="/training">training</a>
         <a class="flag" href="/consulting">consulting</a>
-        <a class="flag col-span-2" href="/contact">contact</a>
+        <a class="flag" href="/contact">contact</a>
       </div>
     </div>
-  </header>
+  </div>
+  <hr class="sep" />
+</header>
 
-  <!-- MAIN -->
-  <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <section class="space-y-6">
-      <div>
-        <p class="text-muted">guest@richeeta:~$ <span class="text-primary">finger richeeta</span></p>
-        <pre class="whitespace-pre-wrap">
-Login: richeeta            Name: <span class="text-secondary">Richard Hyunho Im</span>
-Directory: /home/richeeta       Shell: <span class="text-accent">/bin/zsh</span>
+<main class="container">
+  <p class="prompt">guest@richeeta:~$ <span class="cmd">finger richeeta</span></p>
+  <div class="block">
+Login: richeeta            Name: <span class="secondary">Richard Hyunho Im</span>
+Directory: /home/richeeta       Shell: <span class="accent">/bin/zsh</span>
 Last login Tue Jul 23 14:22 on pts/0
 No Mail.
 
@@ -143,34 +136,39 @@ Description:
 
 Plan:
 Find vulns, drink Diet Coke, and pet my puppy. Not necessarily in that order.
-        </pre>
-      </div>
+  </div>
 
-     <div>
-        <p class="text-muted">guest@richeeta:~$ <span class="text-primary">ls -aR</span></p>
-        <pre class="whitespace-pre-wrap">
-<span class="text-primary">/about:</span>
-.   ..   <a href="/about/certs" class="text-secondary hover:text-accent">certs</a>   <a href="/about/credits" class="text-secondary hover:text-accent">credits</a>   <a href="/about/languages" class="text-secondary hover:text-accent">langs</a>   <a href="/about/projects" class="text-secondary hover:text-accent">projects</a>   <a href="/about/tools" class="text-secondary hover:text-accent">tools</a>   <a href="/about/equipment" class="text-secondary hover:text-accent">equipment</a>
+  <p class="prompt">guest@richeeta:~$ <span class="cmd">ls -aR</span></p>
+  <div class="block">
+<span class="primary">/about:</span>
+.   ..   <a href="/about/certs" class="secondary">certs</a>   <a href="/about/credits" class="secondary">credits</a>   <a href="/about/languages" class="secondary">langs</a>   <a href="/about/projects" class="secondary">projects</a>   <a href="/about/tools" class="secondary">tools</a>   <a href="/about/equipment" class="secondary">equipment</a>
 
-<span class="text-primary">/blog:</span>
+<span class="primary">/blog:</span>
 .   ..
-<span class="text-primary">/training:</span>
+<span class="primary">/training:</span>
 .   ..
-<span class="text-primary">/consulting:</span>
+<span class="primary">/consulting:</span>
 .   ..
-<span class="text-primary">/contact:</span>
+<span class="primary">/contact:</span>
 .   ..
-        </pre>
-      </div>
-    </section>
-  </main>
+  </div>
+</main>
 
-  <!-- FOOTER -->
-  <footer class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm text-muted">
-    © 2025 Richard Hyunho Im. All rights reserved.<br />
-    <a href="#" class="flag">terms of use</a>
-    <a href="#" class="flag ml-4">privacy policy</a>
-    <a href="/security.txt" class="flag ml-4">security.txt</a>
-  </footer>
+<footer class="footer">
+  © 2025 Richard Hyunho Im. All rights reserved.<br />
+  <a href="#" class="flag">terms of use</a>
+  <a href="#" class="flag">privacy policy</a>
+  <a href="/security.txt" class="flag">security.txt</a>
+</footer>
+
+<script>
+  // Auto-close mobile menu when resizing ≥ md
+  (function(){
+    const el = document.getElementById('mnav');
+    const mq = window.matchMedia('(min-width:768px)');
+    function sync(){ if (mq.matches) el.classList.remove('open'); }
+    (mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync)); sync();
+  })();
+</script>
 </body>
 </html>
