@@ -1,16 +1,16 @@
-<!-- nullie-terminal.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Richard Hyunho Im (@richeeta) - Security Researcher</title>
 
-  <!-- (Optional) Preconnect to font origin to quiet preload warnings -->
+  <!-- optional: helps font loads -->
   <link rel="preconnect" href="https://richardim.com" crossorigin>
 
-  <!-- Define Tailwind config BEFORE loading the CDN script -->
-  <script>
+  <!-- 1) Tailwind config MUST run before the CDN script AND be exempt from Rocket Loader -->
+  <script data-cfasync="false">
+    window.tailwind = window.tailwind || {};
     tailwind.config = {
       theme: {
         extend: {
@@ -20,19 +20,21 @@
             primary: '#06f980',
             secondary: '#00e5ff',
             accent: '#c866ff',
-            muted: '#6c757d',
+            muted: '#6c757d'
           },
           fontFamily: {
             mono: ["'So:hne Mono'", 'monospace'],
-            sans: ["'So:hne'", 'sans-serif'],
-          },
-        },
-      },
+            sans: ["'So:hne'", 'sans-serif']
+          }
+        }
+      }
     };
   </script>
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-  <!-- Custom font faces (So:hne family) -->
+  <!-- 2) Load the Tailwind CDN script itself, also exempted from Rocket Loader -->
+  <script data-cfasync="false" src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- 3) Fonts -->
   <style>
     @font-face{
       font-family:'So:hne';
@@ -55,23 +57,23 @@
       font-weight:400;font-style:normal;font-display:swap;
     }
 
-    body { font-family:'So:hne Mono', monospace; }
-    .flag { color: #6c757d; transition: color .2s; }
-    .flag:hover { color: #c866ff; }
+    /* Minimal fallback if Tailwind still gets blocked */
+    :root{
+      --background:#0d0d0d; --foreground:#e0e0e0; --primary:#06f980; --secondary:#00e5ff; --accent:#c866ff; --muted:#6c757d;
+    }
+    body{background:var(--background);color:var(--foreground);font-family:'So:hne Mono',monospace;}
+    .flag{color:var(--muted)} .flag:hover{color:var(--accent)}
   </style>
 </head>
 
 <body class="bg-background text-foreground selection:bg-primary/30 selection:text-white">
-  <!-- Header -->
+  <!-- HEADER -->
   <header class="sticky top-0 z-10 bg-background/80 backdrop-blur-sm border-b border-muted/20">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
         <div class="flex items-center gap-4">
-          <!-- Small logo thumbnail (you + Peanut) -->
-          <div
-            class="h-10 w-10 border-2 border-primary rounded bg-cover bg-center"
-            style="background-image:url('https://richardim.com/assets/images/logo.png');">
-          </div>
+          <div class="h-10 w-10 border-2 border-primary rounded bg-cover bg-center"
+               style="background-image:url('https://richardim.com/assets/images/logo.png')"></div>
           <div>
             <h1 class="text-lg font-bold text-white leading-tight" style="font-family:'So:hne'">
               Richard Hyunho Im (@richeeta)
@@ -80,11 +82,9 @@
           </div>
         </div>
 
-        <!-- Mobile hamburger -->
         <button class="md:hidden text-primary" aria-label="Open menu"
                 onclick="document.getElementById('mobile-nav').classList.toggle('hidden')">☰</button>
 
-        <!-- Desktop nav -->
         <nav class="hidden md:flex items-center gap-6">
           <div class="relative group">
             <a class="flag cursor-pointer">about</a>
@@ -105,7 +105,6 @@
       </div>
     </div>
 
-    <!-- Mobile nav drawer -->
     <div id="mobile-nav" class="md:hidden hidden px-4 pb-3">
       <div class="grid grid-cols-2 gap-2 text-sm">
         <a class="flag" href="/about/certs">certs</a>
@@ -122,10 +121,9 @@
     </div>
   </header>
 
-  <!-- Main -->
+  <!-- MAIN -->
   <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <section class="space-y-6">
-      <!-- finger -->
       <div>
         <p class="text-muted">guest@richeeta:~$ <span class="text-primary">finger richeeta</span></p>
         <pre class="whitespace-pre-wrap">
@@ -148,8 +146,7 @@ Find vulns, drink Diet Coke, and pet my puppy. Not necessarily in that order.
         </pre>
       </div>
 
-      <!-- ls -aR -->
-      <div>
+     <div>
         <p class="text-muted">guest@richeeta:~$ <span class="text-primary">ls -aR</span></p>
         <pre class="whitespace-pre-wrap">
 <span class="text-primary">/about:</span>
@@ -168,7 +165,7 @@ Find vulns, drink Diet Coke, and pet my puppy. Not necessarily in that order.
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm text-muted">
     © 2025 Richard Hyunho Im. All rights reserved.<br />
     <a href="#" class="flag">terms of use</a>
