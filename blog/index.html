@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Richard Hyunho Im (@richeeta), Security Researcher</title>
+<link rel="stylesheet" href="/assets/site.css"/>
+</head>
+<body>
+  <div data-include="/partials/header.html"></div>
+
+    <main class="container">
+  <p class="prompt">guest@richeeta:~/blog$ <span class="cmd">ls -l --sort=time</span></p>
+  <div id="post-list" class="block">Loading…</div>
+</main>
+
+
+  <div data-include="/partials/footer.html"></div>
+
+  <!-- Rocket Loader safe -->
+  <script data-cfasync="false" src="/assets/include.js" defer></script>
+<script>
+(function(){const el=document.getElementById('mnav');const mq=window.matchMedia('(min-width:768px)');function sync(){if(mq.matches)el.classList.remove('open')}(mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync));sync();})();
+(async function(){
+  const out=document.getElementById('post-list');
+  try{
+    const res=await fetch('/blog/posts.json',{cache:'no-store'});
+    const posts=await res.json();
+    const lines=posts.map(p=>`- <a class="secondary" href="${p.url}">${p.title}</a>  <span class="accent">(${p.date})</span>`);
+    out.textContent='';
+    out.innerHTML=lines.join('\n');
+  }catch(e){out.textContent='(no posts yet)';}
+})();
+</script>
+</body></html>
