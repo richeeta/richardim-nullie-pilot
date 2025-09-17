@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Richard Hyunho Im (@richeeta), Security Researcher</title>
+<link rel="stylesheet" href="/assets/site.css"/>
+</head>
+<body>
+  <div data-include="/partials/header.html"></div>
+
+
+<main class="container">
+  <p class="prompt">guest@richeeta:~$ <span class="cmd">cat creds.txt</span></p>
+  <div class="block">
+<span class="primary">Apple Product Security</span>
+CVE-2025-24225: Mail Addressing Vulnerability
+CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N (6.5 Medium)
+
+Credited for discovering an email parsing vulnerability that allowed spoofing recipient addresses in Contacts and Mail apps on iOS & iPadOS.
+
+May 2025: iOS & iPadOS 18.5 Security Acknowledgement
+May 2025: iPadOS 17.7.7 Security Acknowledgement
+CVE-2025-24198: Sensitive Data Exposure on Lock Screen via Siri
+CVSS:3.1/AV:P/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H (6.6 Medium)
+
+Credited for discovering a Siri vulnerability that leaked the user’s most recent ChatGPT conversation and most recent browsing activity in Safari on locked devices via the Reminders app. Also credited for issues in Accessibility, Status Bar, and Writing Tools.
+
+March 2025: iOS & iPadOS 18.4 Security Acknowledgement
+March 2025: macOS Sequoia 15.4 Security Acknowledgement
+March 2025: macOS Ventura 13.7.5 Security Acknowledgement
+CVE-2024-44235: Sensitive Data Exposure on Lock Screen via Spotlight
+CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N (4.6 Medium)
+
+Credited for discovering a Spotlight vulnerability that allowed restricted content from Pages, Photos, Notes, Numbers, and Keynote to be viewed on the Lock Screen.
+
+October 2024: iOS & iPadOS 18.1 Security Acknowledgement
+
+<span class="primary">Additional Recognition (No CVE Assigned)</span>
+July 2025: Apple Web Server Security Acknowledgement: Broken access control on Apple SEED
+March 2025: visionOS 2.4 Security Acknowledgement: Accessibility sensitive information disclosure on locked Vision Pro
+March 2025: iOS & iPadOS 18.4 Security Acknowledgements: Accessibility sensitive information disclosure on locked iPhone/iPad; Siri/Apple Intelligence context confusion → leaking cached Private Cloud Compute data to ChatGPT
+December 2024: macOS Sequoia 15.2 Security Acknowledgement: Race condition in Shortcuts bypassing Face ID lock for Safari private tab
+December 2024: iOS & iPadOS 18.2 Security Acknowledgement: Race condition in Shortcuts bypassing Face ID lock for Safari private tab
+December 2024: visionOS 2.2 Security Acknowledgement: Race condition in Shortcuts bypassing Optic ID lock for Safari private tab
+September 2024: iOS & iPadOS 18 Security Acknowledgement: Wi-Fi credential leak in Passwords app in App Switcher
+September 2024: macOS Sequoia 15 Security Acknowledgement: Wi-Fi credential leak via Passwords app in App Switcher
+September 2024: visionOS 2 Security Acknowledgement: Wi-Fi credential leak via Passwords app in App Switcher
+August 2024: Apple Web Server Security Acknowledgement: IDOR on getsupport.apple.com
+April 2024: Apple Web Server Security Acknowledgement: Password auth bypass on icloud.com
+
+<span class="primary">OpenAI (Ranked #16 in Aug 2024)</span>
+OpenAI Bug Bounty Hall of Fame
+June 2025: Broken access control on academy.openai.com
+December 2024: Arbitrary account deletion on privacy.openai.com
+November 2024: Voice session persistence on Lock Screen in ChatGPT for macOS/Windows
+September 2024: User data exfiltration on Lock Screen in ChatGPT for iOS/iPadOS
+
+<span class="primary">Microsoft</span>
+MSRC Online Services Acknowledgements
+July 2025: Email spoofing in Outlook for iOS (related to CVE-2025-24225)
+August 2024: Complete App Lock bypass via misconfigured deep link in Microsoft Authenticator for iOS
+June 2024: Insecure OAuth implementation in Bing for iOS enabling token hijacking and reuse
+
+<span class="primary">Google</span>
+Google VRP Hall of Fame
+August 2024: Sensitive info disclosure on developers.google.com
+June 2024: Sensitive info disclosure on ellesfont.withyoutube.com
+
+<span class="primary">BBC</span>
+BBC Security Acknowledgements
+November 2024: Broken access control vulnerabilities on multiple endpoints
+  </div>
+</main>
+
+
+
+
+  <div data-include="/partials/footer.html"></div>
+
+  <!-- Rocket Loader safe -->
+  <script data-cfasync="false" src="/assets/include.js" defer></script>
+</body>
+</html>

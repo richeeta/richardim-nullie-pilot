@@ -1,0 +1,52 @@
+@font-face{font-family:'So:hne';src:url('https://richardim.com/assets/fonts/dehinted-Sohne-Buch.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'So:hne Kra:ftig';src:url('https://richardim.com/assets/fonts/dehinted-Sohne-Kraftig.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap;}
+@font-face{font-family:'So:hne Fett';src:url('https://richardim.com/assets/fonts/dehinted-Sohne-Fett.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;}
+@font-face{font-family:'So:hne Mono';src:url('https://richardim.com/assets/fonts/dehinted-SohneMono-Buch.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+
+:root{
+  --bg:#0d0d0d; --fg:#e0e0e0; --muted:#6c757d;
+  --pri:#06f980; --sec:#00e5ff; --acc:#c866ff;
+  --border:rgba(108,117,125,.2);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'So:hne Mono',monospace}
+a{color:inherit;text-decoration:none}
+.flag{color:var(--muted);transition:color .2s}
+.flag:hover{color:var(--acc)}
+
+.container{max-width:1100px;margin:0 auto;padding:0 16px}
+
+/* Header & nav */
+header{position:sticky;top:0;z-index:10;background:rgba(13,13,13,.8);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--border)}
+.navbar{height:64px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:40px;height:40px;border:2px solid var(--pri);border-radius:6px;background-size:cover;background-position:center}
+.title{line-height:1.05}
+.title h1{margin:0;font:700 18px 'So:hne',sans-serif;color:#fff}
+.subtitle{margin:0;color:var(--pri);font-size:13px}
+.desktop-nav{display:none;gap:24px;align-items:center}
+@media (min-width:768px){.desktop-nav{display:flex}}
+.dd{position:relative}
+.dd > a{cursor:pointer}
+.dd-menu{position:absolute;top:100%;left:0;margin-top:6px;display:none;background:var(--bg);border:1px solid var(--muted);border-radius:8px;padding:8px 10px;min-width:160px;box-shadow:0 10px 24px rgba(0,0,0,.45);font-size:14px}
+.dd:hover .dd-menu{display:block}
+.dd-menu a{display:block;padding:6px 4px}
+.hamb{display:inline-block;background:none;border:0;color:var(--pri);font-size:22px;cursor:pointer}
+@media (min-width:768px){.hamb{display:none}}
+.mobile{display:none;padding:10px 16px}
+.mobile.open{display:block}
+.mobile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.mobile-grid a{font-size:14px}
+hr.sep{border:0;border-top:1px solid var(--border);margin:10px 0 0}
+
+/* Terminal look */
+main{padding:24px 0 12px}
+.prompt{color:var(--muted)}
+.cmd{color:var(--pri)}
+.primary{color:var(--pri)} .secondary{color:var(--sec)} .accent{color:var(--acc)}
+.block{white-space:pre-wrap;margin:10px 0 22px}
+
+/* Footer */
+.footer{border-top:1px solid var(--border);padding:18px 0 28px;text-align:center;color:var(--muted);font-size:13px}
+.footer a{margin:0 12px}

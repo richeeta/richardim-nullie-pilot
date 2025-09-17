@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Richard Hyunho Im (@richeeta), Security Researcher</title>
+<link rel="stylesheet" href="/assets/site.css"/>
+</head>
+<body>
+  <div data-include="/partials/header.html"></div>
+
+
+<main class="container">
+  <p class="prompt">guest@richeeta:~/blog$ <span class="cmd">cat 2025-09-16-hello-nullie.md</span></p>
+  <div class="block">
+This is a sample post so you can test the blog list, routing, and comments.
+  </div>
+
+  <p class="prompt">guest@richeeta:~/blog$ <span class="cmd"># comments</span></p>
+  <div class="block">
+    <!-- utterances req pub repo. need to set repo below to one of my pub repos (todo). -->
+    <script src="https://utteranc.es/client.js"
+            repo="richeeta/richardim-nullie-pilot"
+            issue-term="pathname"
+            label="blog-comment"
+            theme="github-dark"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+</main>
+
+
+
+
+
+  <div data-include="/partials/footer.html"></div>
+
+  <!-- Rocket Loader safe -->
+  <script data-cfasync="false" src="/assets/include.js" defer></script>
+</body>
+</html>
