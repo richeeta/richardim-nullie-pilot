@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#050505" media="(prefers-color-scheme: dark)">
+    <meta
+      name="description"
+      content="Siri-ously Leaky: research into overlooked attack surfaces, lock-state confusion, and data exposure across Apple's ecosystem."
+    >
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nullie-v1.richardim.com/writeups/siriously-leaky.html">
+    <meta
+      property="og:title"
+      content="Siri-ously Leaky — Richard Hyunho Im"
+    >
+    <meta
+      property="og:description"
+      content="Exploring overlooked attack surfaces across Apple's ecosystem."
+    >
+    <meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://nullie-v1.richardim.com/writeups/siriously-leaky.html">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Siri-ously Leaky — Richard Hyunho Im</title>
+    <script>
+      (() => {
+        const saved = localStorage.getItem('rhi-theme');
+        const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.dataset.theme = saved || (dark ? 'dark' : 'light');
+      })();
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#article">Skip to article</a>
+
+    <header class="site-header" data-header>
+      <div class="shell header-inner">
+        <a class="wordmark" href="../index.html" aria-label="Richard Hyunho Im, home">
+          <span class="wordmark-mark" aria-hidden="true">R/</span>
+          <span>Richard Im</span>
+        </a>
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <a href="../index.html#research">Research</a>
+          <a href="../index.html#advisories">CVEs</a>
+          <a href="../index.html#talks">Talks</a>
+          <a href="../index.html#about">About</a>
+        </nav>
+        <div class="header-actions">
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">
+            <span data-theme-label>Dark</span>
+          </button>
+          <a class="header-contact" href="mailto:richeeta@proton.me">Contact <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </header>
+
+    <main id="article">
+      <header class="article-header">
+        <div class="shell">
+          <a class="article-back" href="../index.html#research"><span aria-hidden="true">←</span> Research index</a>
+          <ul class="article-kicker">
+            <li>Apple ecosystem</li>
+            <li>Lock screen</li>
+            <li>2025</li>
+          </ul>
+          <h1>Siri-ously Leaky</h1>
+          <p class="article-deck">
+            Exploring overlooked attack surfaces across Apple&rsquo;s ecosystem&mdash;and why the most interesting
+            failures appeared where one trusted component handed text or state to another.
+          </p>
+          <div class="article-meta">
+            <div>
+              <span>Author</span>
+              <strong>Richard Hyunho Im (@richeeta)</strong>
+            </div>
+            <div>
+              <span>Presented</span>
+              <strong>DEF CON 33 Main Stage</strong>
+            </div>
+            <div>
+              <span>Research areas</span>
+              <strong>Siri / Spotlight / Lock state</strong>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="article-layout shell">
+        <nav class="article-toc" aria-label="Article contents">
+          <p>Contents</p>
+          <ol>
+            <li><a href="#abstract">Abstract</a></li>
+            <li><a href="#findings">Findings</a></li>
+            <li><a href="#pattern">The pattern</a></li>
+            <li><a href="#method">Method</a></li>
+            <li><a href="#materials">Materials</a></li>
+          </ol>
+        </nav>
+
+        <article class="article-body">
+          <section id="abstract">
+            <h2>Abstract</h2>
+            <p>
+              Apple&rsquo;s user-facing security model is strongest when a boundary is explicit: locked or unlocked,
+              private or public, authorized or unauthorized. The trouble starts when a feature can act through
+              another feature. Siri can retrieve from apps, Spotlight can expose indexed content, Shortcuts can
+              bridge services, and interface state can change while those actions are in flight.
+            </p>
+            <p>
+              This research examined those seams. Rather than treating Siri, Spotlight, and individual apps as
+              isolated targets, I tested the transitions between them: what context was passed, which component
+              was expected to enforce authentication, and whether that assumption survived unusual sequences or
+              timing.
+            </p>
+            <div class="article-callout">
+              <p>
+                <strong>The recurring failure:</strong> each component behaved plausibly in isolation, but the composed
+                system trusted state or text that had crossed a boundary without being revalidated.
+              </p>
+            </div>
+          </section>
+
+          <section id="findings">
+            <h2>Selected findings</h2>
+            <p>
+              The public talk connects several Apple security credits that look different at the product layer but
+              rhyme at the trust-boundary layer.
+            </p>
+            <div class="finding-table">
+              <div class="finding-row">
+                <code>CVE-2024-44235</code>
+                <p>
+                  Spotlight could expose restricted content from the Lock Screen. Apple addressed the issue with
+                  improved checks.
+                </p>
+              </div>
+              <div class="finding-row">
+                <code>CVE-2025-24198</code>
+                <p>
+                  An attacker with physical access could use Siri to reach sensitive user data. Apple restricted
+                  the options offered on a locked device.
+                </p>
+              </div>
+              <div class="finding-row">
+                <code>CVE-2025-30468</code>
+                <p>
+                  Private Browsing tabs could be accessed without authentication through Siri. Apple corrected the
+                  state-management failure.
+                </p>
+              </div>
+            </div>
+            <p>
+              The scope was broader than a list of CVEs. Additional demonstrations explored assistant context,
+              system actions, timing, and the amount of application state that could become visible through an
+              indirect path.
+            </p>
+          </section>
+
+          <section id="pattern">
+            <h2>The pattern beneath the bugs</h2>
+            <h3>1. Authentication was treated as inherited state</h3>
+            <p>
+              A caller could be locked while a downstream service behaved as if the request arrived from an
+              already-authorized context. The authorization decision existed, but it was made at the wrong layer or
+              at the wrong time.
+            </p>
+            <h3>2. Natural language expanded the reachable surface</h3>
+            <p>
+              An assistant is not only a voice interface. It is a dispatcher that converts text into actions across
+              applications and services. That makes language an input to privileged routing logic&mdash;and turns every
+              integration into a potential trust transition.
+            </p>
+            <h3>3. Product boundaries did not match security boundaries</h3>
+            <p>
+              Users see Siri, Spotlight, Safari, and apps as separate features. The system often composes them. A
+              test plan organized only by product can miss the behavior that emerges between products.
+            </p>
+          </section>
+
+          <section id="method">
+            <h2>How I approached it</h2>
+            <ol>
+              <li>
+                <strong>Map entry points.</strong> Enumerate the phrases, UI surfaces, extensions, actions, and app
+                integrations capable of initiating a request.
+              </li>
+              <li>
+                <strong>Trace context.</strong> Identify which component supplies content, which component displays it,
+                and where lock state or authentication is expected to be enforced.
+              </li>
+              <li>
+                <strong>Compose features.</strong> Exercise paths that cross product boundaries instead of testing each
+                feature as a closed box.
+              </li>
+              <li>
+                <strong>Mutate state and timing.</strong> Change lock state, application state, and operation order while
+                a request is being resolved.
+              </li>
+              <li>
+                <strong>Reduce the proof.</strong> Strip the sequence down until the missing check and its impact are
+                reproducible without ambiguity.
+              </li>
+            </ol>
+          </section>
+
+          <section id="materials">
+            <h2>Talk, slides, and demos</h2>
+            <p>
+              The complete public package includes the DEF CON recording, slide deck, and demonstration videos for
+              the disclosed findings.
+            </p>
+            <p>
+              <a href="https://www.youtube.com/watch?v=MWvpOW-PRJI">Watch the DEF CON 33 talk</a><br>
+              <a href="https://media.defcon.org/DEF%20CON%2033/DEF%20CON%2033%20presentations/Richard%20Hyunho%20Im%20-%20Siri-ously%20Leaky%20Exploring%20Overlooked%20Attack%20Surfaces%20Across%20Apple%27s%20Ecosystem.pdf">Read the slide deck</a><br>
+              <a href="https://github.com/richeeta/DEFCON33-Siriously-Leaky">Browse the demos and proof-of-concept repository</a>
+            </p>
+          </section>
+        </article>
+
+        <aside class="article-aside" aria-label="Research links">
+          <p>Primary sources</p>
+          <a href="https://support.apple.com/en-us/121563">Apple advisory: 44235 ↗</a>
+          <a href="https://support.apple.com/en-us/122371">Apple advisory: 24198 ↗</a>
+          <a href="https://support.apple.com/en-us/125108">Apple advisory: 30468 ↗</a>
+          <a href="https://github.com/richeeta/DEFCON33-Siriously-Leaky">PoCs and demos ↗</a>
+        </aside>
+      </div>
+
+      <section class="article-footer-cta shell">
+        <h2>More work at the seams.</h2>
+        <a class="button button-primary" href="../index.html#research">Browse all research <span aria-hidden="true">→</span></a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-grid">
+        <p>&copy; <span data-current-year>2026</span> Richard Hyunho Im</p>
+        <div class="footer-links">
+          <a href="https://github.com/richeeta" rel="me">GitHub <span aria-hidden="true">↗</span></a>
+          <a href="https://www.linkedin.com/in/richeeta" rel="me">LinkedIn <span aria-hidden="true">↗</span></a>
+          <a href="#article">Back to top <span aria-hidden="true">↑</span></a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "richardim-nullie-v1",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "npm run build && wrangler deploy --dry-run",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.112.0"
+  }
+}

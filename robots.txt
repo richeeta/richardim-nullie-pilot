@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nullie-v1.richardim.com/sitemap.xml

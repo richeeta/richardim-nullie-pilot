@@ -1,40 +1,270 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Richard Hyunho Im (@richeeta), Security Researcher</title>
-<link rel="stylesheet" href="/assets/site.css"/>
-</head>
-<body>
-  <div data-include="/partials/header.html"></div>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#050505" media="(prefers-color-scheme: dark)">
+    <meta
+      name="description"
+      content="Richard Hyunho Im is a security researcher focused on vulnerabilities in Apple's ecosystem and AI/LLM systems."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nullie-v1.richardim.com/">
+    <meta property="og:title" content="Richard Hyunho Im — Security Researcher">
+    <meta
+      property="og:description"
+      content="I find the places where machines trust text they shouldn't. Apple ecosystem and AI/LLM security research."
+    >
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Richard Hyunho Im — Security Researcher">
+    <meta
+      name="twitter:description"
+      content="Apple ecosystem and AI/LLM security research by @richeeta."
+    >
+    <link rel="canonical" href="https://nullie-v1.richardim.com/">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <title>Richard Hyunho Im — Security Researcher</title>
 
-    <main class="container">
-  <p class="prompt">guest@richeeta:~$ <span class="cmd">finger</span> <span class="secondary">richeeta</span></p>
-  <div class="block">
-Login: <span class="secondary">richeeta</span>                 Name: <span class="secondary">Richard Hyunho Im</span>
-Directory: <span class="accent">/home/richeeta</span>       Shell: <span class="accent">/bin/zsh</span>
-Last login <span class="secondary">Wed Sep 17</span> <span class="accent">13:37</span> on <span class="secondary">pts/0</span>
-No Mail.
+    <script>
+      (() => {
+        const saved = localStorage.getItem('rhi-theme');
+        const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.dataset.theme = saved || (dark ? 'dark' : 'light');
+      })();
+    </script>
 
-Description:
-- Security researcher
-- <a class="secondary" href="https://defcon.org/html/defcon-33/dc-33-speakers.html#content_60315">DEF CON 33 Main Stage</a> & HOU.SEC.CON 2025 Speaker: <a class="accent" href="https://www.youtube.com/watch?v=1d381JJPj7k">Siri-ously Leaky: Overlooked Attack Surfaces Across Apple's Ecosystem</a>
-- Credited 20+ times by Apple (including <a class="secondary" href="https://support.apple.com/en-us/121563">CVE-2024-44235</a>, <a class="secondary" href="https://support.apple.com/en-us/122371">CVE-2025-24198</a>, <a class="secondary" href="https://support.apple.com/en-afri/122405">CVE-2025-24225</a>, <a class="secondary" href="https://support.apple.com/en-us/125108">CVE-2025-30468</a>, <a class="secondary" href="https://support.apple.com/en-us/125108">CVE-2025-24133</a>, and multiple web server security acknowledgements in <a class="accent" href="https://support.apple.com/en-us/102774">2024</a> and <a class="accent" href="https://support.apple.com/en-us/102774">2025</a>)
-- <a class="secondary" href="https://bugcrowd.com/engagements/openai/hall_of_fames">Top 25 in OpenAI's Bug Bounty Program</a> (September 2025)
-- <a class="secondary" href="https://www.credly.com/badges/8876aae8-1a37-4c2d-9a75-3b78ec98674f">CompTIA Subject Matter Expert</a> (2022, 2023, 2025)
-- Authored the <b>Platform-Specific Guidance for iOS and iPadOS</b> in <a class="secondary"  href="https://cheatsheetseries.owasp.org/cheatsheets/Mobile_Application_Security_Cheat_Sheet.html#ios-and-ipados">OWASP's Mobile Application Security Cheat Sheet</a>
-- <a class="secondary" href="https://credentials.offsec.com/8470e543-9a67-4b8d-9adf-de8c21d954d3#acc.1pHIB8uT">OSCP</a>, <a class="secondary" href="https://www.credly.com/badges/1cfb9654-3ca4-43a4-bb40-ef9c56fb8f0e">CASP+</a>, <a class="secondary" href="https://www.credly.com/badges/58bdc8af-7ab9-427f-b599-3c65d6767d62">CSIE</a>, <a class="secondary" href="https://www.credly.com/badges/7e7fada3-632c-442c-9028-5984bd7ef079">CSAE</a>, <a class="secondary" href="https://www.credly.com/badges/509ca39c-ebf8-443e-bba4-c9c481198a2a">CNSP</a>, <a class="secondary" href="https://www.credly.com/badges/672b7024-2237-46d8-aa19-e98b7c682233">CNVP</a>, <a class="secondary" href="https://www.credly.com/badges/d48db402-2dd3-418e-a01f-1a785d39f0f0">CSAP</a>, <a class="secondary" href="https://www.credly.com/badges/cdb2019f-899a-4474-8c78-300fc293c1e4">PenTest+</a>, <a class="secondary" href="https://www.credly.com/badges/2e1ce783-4d0e-401f-929c-0c974f26deac">CySA+</a>, <a class="secondary" href="https://www.credly.com/badges/b56da35a-d759-43cc-8a97-d081acc7608a">Security+</a>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Richard Hyunho Im",
+        "alternateName": "richeeta",
+        "url": "https://nullie-v1.richardim.com",
+        "email": "mailto:richeeta@proton.me",
+        "jobTitle": "Security Researcher",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Route Zero Security",
+          "url": "https://routezero.io"
+        },
+        "sameAs": [
+          "https://github.com/richeeta",
+          "https://www.linkedin.com/in/richeeta"
+        ]
+      }
+    </script>
+  </head>
 
-Plan:
-Find vulns, drink Diet Coke, and give Peanut tummy rubs. Not necessarily in that order.
-  </div>
-</main>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
+    <header class="site-header" data-header>
+      <div class="shell header-inner">
+        <a class="wordmark" href="#top" aria-label="Richard Hyunho Im, home">
+          <span class="wordmark-mark" aria-hidden="true">R/</span>
+          <span>Richard Im</span>
+        </a>
 
-  <div data-include="/partials/footer.html"></div>
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <a href="#research">Research</a>
+          <a href="#advisories">CVEs</a>
+          <a href="#talks">Talks</a>
+          <a href="#about">About</a>
+        </nav>
 
-  <!-- Rocket Loader safe -->
-  <script data-cfasync="false" src="/assets/include.js" defer></script>
-</body>
+        <div class="header-actions">
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">
+            <span data-theme-label>Dark</span>
+          </button>
+          <a class="header-contact" href="mailto:richeeta@proton.me">Contact <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero shell" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Security research <span>/</span> Apple ecosystems <span>/</span> AI + LLM</p>
+          <h1 id="hero-title">
+            I find where machines trust <em>text</em> they shouldn&rsquo;t.
+          </h1>
+          <p class="hero-deck">
+            I&rsquo;m Richard Hyunho Im (<a href="https://github.com/richeeta" rel="me">@richeeta</a>), a security
+            researcher at <a href="https://routezero.io">Route Zero Security</a>. I work across indirect prompt
+            injection, authentication boundaries, lock-screen side channels, race conditions, and OAuth hijacking.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="writeups/siriously-leaky.html">
+              Read featured research <span aria-hidden="true">→</span>
+            </a>
+            <a class="text-link" href="#advisories">View disclosure record <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+
+        <aside class="hero-console" aria-label="Research thesis">
+          <div class="console-bar">
+            <span>TRUST_BOUNDARY.LOG</span>
+            <span>001</span>
+          </div>
+          <div class="console-body" aria-hidden="true">
+            <p><span>01</span><code>input.origin</code><b>= untrusted</b></p>
+            <p><span>02</span><code>parser.assumes</code><b>= trusted</b></p>
+            <p><span>03</span><code>boundary.check</code><b>= missing</b></p>
+            <p class="console-result"><span>04</span><code>result</code><b>= disclosure</b></p>
+          </div>
+          <div class="console-note">
+            <span class="status-dot" aria-hidden="true"></span>
+            <p>
+              <strong>Current research</strong>
+              Reverse-engineering Siri and Apple Intelligence across iOS 27 and macOS 27.
+            </p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="proof" aria-label="Selected credentials">
+        <div class="shell proof-grid">
+          <div class="proof-item">
+            <strong>22+</strong>
+            <span>Credited Apple<br>security reports</span>
+          </div>
+          <div class="proof-item">
+            <strong>DEF CON 33</strong>
+            <span>Main Stage<br>speaker</span>
+          </div>
+          <div class="proof-item">
+            <strong>Top 25</strong>
+            <span>OpenAI bug bounty<br>researcher, 2025</span>
+          </div>
+          <div class="proof-item">
+            <strong>5×</strong>
+            <span>Active Apple<br>CVE credits</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section shell" id="research" aria-labelledby="research-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-index">01 / Research</p>
+            <h2 id="research-title">Selected work</h2>
+          </div>
+          <p>
+            Findings, tools, and field notes from the seams between language, permissions, and product behavior.
+          </p>
+        </div>
+
+        <div class="filter-bar" role="group" aria-label="Filter research">
+          <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-button" type="button" data-filter="apple" aria-pressed="false">Apple</button>
+          <button class="filter-button" type="button" data-filter="ai" aria-pressed="false">AI / LLM</button>
+          <button class="filter-button" type="button" data-filter="tools" aria-pressed="false">Tools</button>
+        </div>
+
+        <div class="research-grid" data-research-grid aria-live="polite"></div>
+        <noscript>
+          <p class="noscript-note">
+            JavaScript is disabled. Read <a href="writeups/siriously-leaky.html">Siri-ously Leaky</a> or view
+            <a href="https://github.com/richeeta">all projects on GitHub</a>.
+          </p>
+        </noscript>
+      </section>
+
+      <section class="section section-ruled shell" id="advisories" aria-labelledby="advisories-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-index">02 / Disclosure record</p>
+            <h2 id="advisories-title">Apple CVEs</h2>
+          </div>
+          <p>
+            Selected vendor-attributed vulnerabilities. Each entry links to the corresponding Apple security advisory.
+          </p>
+        </div>
+
+        <div class="advisory-list" data-advisory-list></div>
+
+        <details class="recognition-drawer">
+          <summary>
+            <span>Additional Apple recognition</span>
+            <span class="summary-action">View record <span aria-hidden="true">+</span></span>
+          </summary>
+          <div class="recognition-content" data-recognition-list></div>
+        </details>
+
+        <p class="record-note">
+          Also acknowledged by
+          <a href="https://msrc.microsoft.com/update-guide/acknowledgement/online">Microsoft Security Response Center</a>,
+          <a href="https://bughunters.google.com/leaderboard">Google</a>,
+          <a href="https://www.bbc.com/backstage/security-disclosure-policy/acknowledgements">BBC</a>, and
+          <a href="https://bugcrowd.com/engagements/openai">OpenAI</a>.
+        </p>
+      </section>
+
+      <section class="section section-ruled shell" id="talks" aria-labelledby="talks-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-index">03 / Talks</p>
+            <h2 id="talks-title">On stage</h2>
+          </div>
+          <p>Research explained in public, with the demos and technical record left behind.</p>
+        </div>
+        <div class="talk-list" data-talk-list></div>
+      </section>
+
+      <section class="section about section-ruled shell" id="about" aria-labelledby="about-title">
+        <div class="about-label">
+          <p class="section-index">04 / About</p>
+          <p class="about-handle">@richeeta</p>
+        </div>
+        <div class="about-copy">
+          <h2 id="about-title">The interesting bugs live between the boxes.</h2>
+          <p>
+            I&rsquo;m Richard Hyunho Im, co-founder and security researcher at
+            <a href="https://routezero.io">Route Zero Security</a>. My work focuses on systems that interpret human
+            language or move information across trust boundaries&mdash;especially Apple platforms and AI-enabled products.
+          </p>
+          <p>
+            I build reproducible proofs of concept, trace the actual boundary failure, and communicate it in a form
+            product and security teams can act on. I also created
+            <a href="https://github.com/richeeta/AIAuditor">AI Auditor</a> and
+            <a href="https://github.com/richeeta/0xGUIDScanner">0xGUIDScanner</a>.
+          </p>
+          <div class="credential-row" role="group" aria-label="Certifications">
+            <a href="https://www.credential.net/8470e543-9a67-4b8d-9adf-de8c21d954d3">OSCP</a>
+            <a href="https://www.credly.com/badges/1cfb9654-3ca4-43a4-bb40-ef9c56fb8f0e/public_url">CASP+</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact" aria-labelledby="contact-title">
+        <div class="shell contact-grid">
+          <div>
+            <p class="section-index">05 / Contact</p>
+            <h2 id="contact-title">Found a strange boundary?</h2>
+          </div>
+          <div class="contact-action">
+            <a href="mailto:richeeta@proton.me">richeeta@proton.me <span aria-hidden="true">↗</span></a>
+            <p>Research collaboration, security work, or speaking.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-grid">
+        <p>&copy; <span data-current-year>2026</span> Richard Hyunho Im</p>
+        <div class="footer-links">
+          <a href="https://github.com/richeeta" rel="me">GitHub <span aria-hidden="true">↗</span></a>
+          <a href="https://www.linkedin.com/in/richeeta" rel="me">LinkedIn <span aria-hidden="true">↗</span></a>
+          <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="content.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
