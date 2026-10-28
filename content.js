@@ -46,6 +46,22 @@ window.siteContent = {
   advisories: [
     {
       year: '2026',
+      id: 'CVE-2026-112521',
+      component: 'Security',
+      platform: 'macOS',
+      impact: 'A sandboxed process may bypass sandbox restrictions due to a buffer overflow. Credited jointly with Efstratios Kaplanellis.',
+      href: 'https://support.apple.com/en-us/149521'
+    },
+    {
+      year: '2026',
+      id: 'CVE-2026-86987',
+      component: 'Apple Intelligence',
+      platform: 'iOS / iPadOS',
+      impact: 'An authorization issue could allow a remote attacker to access sensitive user data. Fixed with improved entitlement checks.',
+      href: 'https://support.apple.com/en-us/149230'
+    },
+    {
+      year: '2026',
       id: 'CVE-2026-20655',
       component: 'Live Captions',
       platform: 'iOS / iPadOS',
